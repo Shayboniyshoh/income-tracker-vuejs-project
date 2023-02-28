@@ -1,12 +1,15 @@
 <template>
     <header>
         <h1 class="heading">Income Tracker</h1>
-        <div class="total-income">$0</div>
+        <div class="total-income">${{ totalIncome }}</div>
     </header>
 </template>
 
 <script>
 export default {
+    props: {
+        totalIncome: Number
+    }
 
 }
 </script>
@@ -28,6 +31,7 @@ header {
 .total-income {
     color: #eee;
     padding: 1rem;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
+    font-weight: 900;
 }
 </style>
