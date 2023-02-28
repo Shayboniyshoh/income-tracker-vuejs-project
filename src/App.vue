@@ -1,15 +1,17 @@
 <template>
   <div id="app">
     <HeaderItem :totalIncome="state.totalIncome" />
+    <FormFields />
   </div>
 </template>
 
 <script>
 import { reactive, computed } from "vue";
 import HeaderItem from "./components/HeaderItem.vue";
+import FormFields from "./components/FormFields.vue";
 
 export default {
-  components: { HeaderItem },
+  components: { HeaderItem, FormFields },
   setup() {
     const state = reactive({
       income: [{
@@ -30,6 +32,7 @@ export default {
 
     return {
       HeaderItem,
+      FormFields,
       state
     }
   }
