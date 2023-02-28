@@ -1,12 +1,19 @@
 <template>
   <div id="app">
-    <h1>Hello, World</h1>
+    <HeaderItem />
   </div>
 </template>
 
 <script>
+import HeaderItem from "./components/HeaderItem.vue";
 
 export default {
+  components: { HeaderItem },
+  setup() {
+    return {
+      HeaderItem
+    }
+  }
 }
 </script>
 
