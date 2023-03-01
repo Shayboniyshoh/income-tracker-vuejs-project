@@ -2,6 +2,7 @@
   <div id="app">
     <HeaderItem :totalIncome="state.totalIncome" />
     <FormFields @add-income="AddIncome" />
+    <IncomeList :state="state" />
   </div>
 </template>
 
@@ -9,9 +10,10 @@
 import { reactive, computed } from "vue";
 import HeaderItem from "./components/HeaderItem.vue";
 import FormFields from "./components/FormFields.vue";
+import IncomeList from "./components/IncomeList.vue";
 
 export default {
-  components: { HeaderItem, FormFields },
+  components: { HeaderItem, FormFields, IncomeList },
   setup() {
     const state = reactive({
       income: [],
@@ -23,7 +25,15 @@ export default {
           }
         }
         return temp;
-      })
+      }),
+      sortedIncome: computed(() => {
+        let temp = [];
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+        temp = state.income.sort(function (a, b) {
+          return b.date - a.date;
+        });
+        return temp;
+      }),
     });
     function AddIncome(data) {
       let d = data.date.split("-");
@@ -41,6 +51,7 @@ export default {
     return {
       HeaderItem,
       FormFields,
+      IncomeList,
       state,
       AddIncome
     }

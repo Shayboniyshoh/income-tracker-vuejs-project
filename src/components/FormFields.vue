@@ -2,7 +2,7 @@
     <form @submit.prevent="formHandler">
         <input type="text" placeholder="Description..." v-model="formData.desc">
         <input type="number" placeholder="Value..." v-model="formData.price">
-        <input type="date" placeholder="Date..." v-model="formData.date">
+        <input type="date" value="dd/mm/yyyy" placeholder="Date..." v-model="formData.date">
         <input type="submit" value="Submit">
     </form>
 </template>
