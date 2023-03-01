@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <HeaderItem :totalIncome="state.totalIncome" />
-    <FormFields />
+    <FormFields @add-income="AddIncome" />
   </div>
 </template>
 
@@ -14,26 +14,35 @@ export default {
   components: { HeaderItem, FormFields },
   setup() {
     const state = reactive({
-      income: [{
-        value: 400,
-      }, {
-        value: 900,
-      }],
+      income: [],
       totalIncome: computed(() => {
         let temp = 0;
         if (state.income.length > 0) {
           for (let i = 0; i < state.income.length; i++) {
-            temp += state.income[i].value;
+            temp += state.income[i].price;
           }
         }
         return temp;
       })
-    })
+    });
+    function AddIncome(data) {
+      let d = data.date.split("-");
+      let newD = new Date(d[0], d[1], d[2]);
+
+      state.income = [...state.income, {
+        id: Date.now(),
+        desc: data.desc,
+        price: parseInt(data.price),
+        date: newD.getTime()
+      }]
+      console.log(state.income);
+    }
 
     return {
       HeaderItem,
       FormFields,
-      state
+      state,
+      AddIncome
     }
   }
 }
